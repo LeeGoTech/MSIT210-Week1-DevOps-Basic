@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock title %}
+{% block content %}
+    <h1>This is the Home page</h1>
+    <p>Welcome to our course.</p>
+    <ul>
+        <li>Course: {{ course }}</li>
+        <li>Units: 3</li>
+    </ul>
+
+    <p><a href="{% url 'about' %}">About</a></p>
+{% endblock content %}

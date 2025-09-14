@@ -5,7 +5,7 @@ from django.http import HttpResponse
 def home(request):
     context = {
         'title': 'Home',
-        'course': 'MSIT217 - Web App',
+        'course': 'MSIT 210 - DevOps and Software Lifecycle Automation',
         'units': 3,
     }
     return render('request', 'home.html', context)
@@ -13,11 +13,10 @@ def home(request):
 def about(request):
     context = {
         'title': 'About',
+        'name': 'Daniel Ligutan',
+        'student_id': '2021-32347',
     }
     return render('request', 'about.html', context)
 
 def base(request):
-    context = {
-        'title': 'Base',
-    }
-    return render('request', 'base.html', context)
+    return render('request', 'base.html')

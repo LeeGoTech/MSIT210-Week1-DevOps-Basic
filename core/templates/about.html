@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-</head>
-<body>
-    <h1>This is the About page.</h1>
-    <p>Let's explore more about this course.</p>
+{% extends "base.html" %}
 
-    <p>Click this link <a href="{% url 'home' %}">Home</a> to access </p>
-</body>
-</html>
+{% block title %}{{ title }}{% endblock title %}
+{% block content %}
+    <h1>This is the About page</h1>
+    <ul>
+        <li>Name: {{ name }}</li>
+        <li>Student ID: {{ student_id }}</li>
+    </ul>
+
+    <p>Click the link <a href="{% url 'home' %}">Home</a> to access the homepage.</p>
+{% endblock content %}

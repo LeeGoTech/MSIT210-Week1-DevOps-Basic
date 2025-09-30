@@ -1,12 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django App | {% block title %}{% endblock title %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      }
+    })();
+  </script>
+  <title>Django App | {% block title %}{% endblock title %}</title>
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/fonts/output.css' %}">
+  <link rel="stylesheet" href="{% static 'css/themes/output.css' %}">
 </head>
 <body>
+  <div>
+    <nav class="layout-navbar shadow-none py-0 navbar-active">
+      <div class="container">
+        <div class="navbar navbar-expand-lg landing-navbar px-3 px-md-8">
+          <ul id="navigationBar" class="navbar-nav me-auto d-none d-sm-flex">
+            {% block nav %}{% endblock nav %}
+          </ul>
+
+          <!-- Menu Button -->
+          <button id="menuBtn" class="btn d-sm-none">
+            <i class="icon-base ri ri-menu-fill icon-lg align-middle text-heading fw-medium"></i>
+          </button>
+
+          <!-- Custom Offcanvas -->
+          <div id="offcanvas" class="offcanvas">
+            <button class="navbar-toggler border-0 text-heading position-absolute end-0 top-0 p-2" type="button" id="offcanvasClose">
+              <i class="icon-base ri ri-close-fill"></i>
+            </button>
+            <div id="offcanvasBody" class="offcanvas-body"></div>
+          </div>
+
+          <!-- Overlay -->
+          <div id="offcanvasOverlay" class="offcanvas-overlay"></div>
+
+          <ul class="navbar-nav flex-row align-items-center ms-auto">
+            <!-- Style Switcher -->
+            <li class="nav-item me-2 me-xl-0">
+              <a class="nav-link" role="button" id="theme-toggle">
+                <i class="bx-sun icon-base bx icon-lg theme-icon-active"></i>
+              </a>
+            </li>
+            <!--/ Style Switcher -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container">
     {% block content %}{% endblock content %}
+  </div>
 </body>
+  <script src="{% static 'js/navbar.js' %}" defer></script>
+  {% block scripts %}{% endblock scripts %}
 </html>

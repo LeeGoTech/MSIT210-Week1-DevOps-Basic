@@ -20,3 +20,33 @@ def about(request):
 
 def base(request):
     return render('request', 'base.html')
+
+def announcements(request):
+    lists = {
+        1: {"title": "Welcome!"},
+        2: {"title": "First assignment."},
+    }
+    context = {
+        "lists": lists
+    }
+    return render(request, "announcements.html", context)
+
+
+def announcement_detail(request, id):
+    lists = {
+        1: {
+            "title": "Welcome!",
+            "message": "Welcome to the course!",
+        },
+        2: {
+            "title": "First assignment.",
+            "message": "First assignment is due next week.",
+        },
+    }
+    announcement = lists.get(id)
+    context = {
+        "id": id,
+        "title": announcement["title"],
+        "message": announcement["message"],
+    }
+    return render(request, "announcement_detail.html", context)
